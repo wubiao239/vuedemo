@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue style class</title>
+	<script src="https://unpkg.com/vue"></script>
+	
+</head>
+<body>
+	<div id="app">
+		<div class="static"
+	     v-bind:class="{ active: isActive, 'text-danger': hasError }">bind :class string
+		</div>
+		<div class="static"
+	      v-bind:class="[activeClass, errorClass]">bind :class array
+		</div>
+		<div v-bind:class="[!isActive ? activeClass : '', errorClass]">array isactive</div>
+		<div v-bind:class="[{ active: isActive }, errorClass]">array  object isactive</div>
+		<div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">bind:style</div>
+		<div v-bind:class="classObject">bind class object</div>
+
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		 	el:'#app',
+		  data: {
+		    isActive: true,
+		    error: null,
+		    activeColor:'#ccc',
+		    fontSize:14,
+		   	activeClass: 'active',
+		   	errorClass: 'text-danger',
+		    classObject: {
+		        active: true,
+		        'text-danger': false
+		      }
+		  },
+		  computed: {
+		    classObject: function () {
+		      return {
+		        active: this.isActive && !this.error,
+		        'text-danger': this.error && this.error.type === 'fatal'
+		      }
+		    }
+		  }
+		})
+</script>
+<style>
+	.active{
+		color:red;
+	}
+	.text-danger{
+		text-decoration: underline;
+	}
+</style>
+</html>

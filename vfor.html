@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue v for</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<ul id="example-1">
+	  <li v-for="item in items">
+	    {{ item.message }}
+	  </li>
+	</ul>
+
+
+	<ul id="example-2">
+	  <li v-for="(item, index) in items">
+	    {{ parentMessage }} - {{ index }} - {{ item.message }}
+	  </li>
+	</ul>
+
+	<ul id="v-for-object" class="demo">
+	  <li v-for="(index,key,value) in object">
+	     {{ index }}. {{ key }}: {{ value }}
+	  </li>
+	</ul>
+
+
+
+</body>
+<script>
+	var example1 = new Vue({
+	  el: '#example-1',
+	  data: {
+	    items: [
+	      { message: 'Foo' },
+	      { message: 'Bar' }
+	    ]
+	  }
+	})
+
+	var example2 = new Vue({
+	  el: '#example-2',
+	  data: {
+	    parentMessage: 'Parent',
+	    items: [
+	      { message: 'Foo' },
+	      { message: 'Bar' }
+	    ]
+	  }
+	})
+
+	var v_object=new Vue({
+	  el: '#v-for-object',
+	  data: {
+	    object: {
+	      firstName: 'John',
+	      lastName: 'Doe',
+	      age: 30
+	    }
+	  }
+	})
+
+
+</script>
+</html>
